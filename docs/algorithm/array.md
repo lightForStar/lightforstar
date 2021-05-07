@@ -355,7 +355,7 @@ class LRUCache {
 
 #### [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
-难度中等555收藏分享切换为英文关注反馈
+难度中等
 
 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
 

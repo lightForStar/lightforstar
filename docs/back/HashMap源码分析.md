@@ -493,3 +493,33 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 # 红黑树相关
 ## 红黑树的存取数据
 ## 链表转换为红黑树
+
+
+
+
+
+# ConcurrentHashMap
+
+## JDK1.7
+
+分段锁 
+
+持有Segment[]  ->  持有 Entry[] -> 冲突时在数组基础上增加链表
+
+
+
+初始化：根据并发线程数创建Segment数组并初始化Segment[0]；
+
+
+
+put：计算segment的位置，为null则初始化，循环判断是否weinull，cas设置创建的segment，不为null，获取锁插入
+
+## JDK1.8
+
+ 结构：Node 数组 + 链表 / 红黑树
+
+初始化：标识变量sizeCtl，如果小于0说明有其他线程正在初始化，让出线程，否则cas改变sizeCtl为负数，执行创建Node数组操作，使用循环自旋判断是否重试初始化操作
+
+
+
+put：获取元素插入位置的桶下标，判断该位置是否为null，为null则cas插入，不为null则synchronized同步锁插入
